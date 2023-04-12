@@ -15,5 +15,28 @@ router.get('/', async (req,res) => {
     }
 });
 
+router.get('/:cid', async (req,res)=>{
+    const idCart = req.params.cid;
+    const cart = await cartManager.getCartById(idCart);
+
+    if(cart != -1){
+        res.send({
+            status: 'Success',
+            cart
+        });
+    }else{
+        res.send({
+            status: 'Error: ID not found'
+        });
+    }
+});
+
+router.post('/', async (req,res) => {
+    await cartManager.addCart();
+    res.send({
+        status: 'Success'
+    })
+});
+
 
 export default router;

@@ -51,7 +51,7 @@ export default class ProductManager{
                 return productMatched;
             }
         }else{
-            return 'The file is empty';
+            return -1;
         }
     }
 

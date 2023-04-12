@@ -18,7 +18,17 @@ router.get('/', async (req,res) => {
 router.get('/:pid', async (req,res)=>{
     const idProduct = req.params.pid;
     const product = await productManager.getProductById(idProduct);
-    res.send(product);
+    
+    if(product != -1){
+        res.send({
+            status: 'Success',
+            product
+        });
+    }else{
+        res.send({
+            status: 'Error: ID not found'
+        });
+    }
 });
 
 router.post('/', async (req,res) => {
