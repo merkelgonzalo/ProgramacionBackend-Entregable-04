@@ -10,18 +10,23 @@ export default class ProductManager{
 
         const products = await this.getProducts();
 
-        if(products.length === 0){
-            product.id = 1;
+        if(!product.title || !product.description || !product.code || !product.price || !product.stock || !product.category){
+            console.log("ERROR: Can't add this product because contain an empty value");
         }else{
-            product.id = products[products.length-1].id+1;
+            product.status = true;
+            
+            if(products.length === 0){
+                product.id = 1;
+            }else{
+                product.id = products[products.length-1].id+1;
+            }
+
+            products.push(product);
+    
+            await fs.promises.writeFile(`./${this.path}`, JSON.stringify(products, null, '\t'));
+    
+            return product;
         }
-
-        products.push(product);
-
-        await fs.promises.writeFile(`./${this.path}`, JSON.stringify(products, null, '\t'));
-
-        return product;
-
     }
 
     getProducts = async() => {   

@@ -21,4 +21,13 @@ router.get('/:pid', async (req,res)=>{
     res.send(product);
 });
 
+router.post('/', async (req,res) => {
+    const product = req.body;
+    await productManager.addProduct(product);
+
+    res.send({
+        status: 'Success'
+    })
+});
+
 export default router;
