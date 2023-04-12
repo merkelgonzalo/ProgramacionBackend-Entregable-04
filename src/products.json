@@ -33,14 +33,14 @@
 		"id": 3
 	},
 	{
-		"title": "Celular",
-		"description": "Samsung Galaxy S21+",
-		"price": 150000,
+		"title": "Auriculares",
+		"description": "Skullcandy",
+		"price": 6500,
 		"thumbnail": [],
-		"code": "athyc123",
-		"stock": 0,
-		"category": "Android Smartphones",
-		"status": false,
+		"code": "SK10120",
+		"stock": 14,
+		"category": "Musica",
+		"status": true,
 		"id": 4
 	},
 	{

@@ -35,7 +35,7 @@ router.put('/:pid', async (req,res) => {
     const idProduct = req.params.pid;
     const productUpdated = await productManager.updateProduct(idProduct, product);
 
-    if(productUpdated != 'ID not found'){
+    if(productUpdated != -1){
         res.send({
             status: 'Success'
         })

@@ -46,7 +46,7 @@ export default class ProductManager{
             let productMatched = products.find(product => product.id == aId);
 
             if(productMatched == undefined){
-                return 'ID not found'
+                return -1
             }else{
                 return productMatched;
             }
@@ -63,17 +63,15 @@ export default class ProductManager{
             return 'Empty file: Can not update a product'
         }else{
             let productById = await this.getProductById(aId);
-            if(productById == 'ID not found'){
-                return 'ID not found';
+            if(productById == -1){
+                return -1;
             }else{
                 product.id = productById.id;
                 products[productById.id-1] = product;
                 await fs.promises.writeFile(`./${this.path}`, JSON.stringify(products, null, '\t'));
                 return product;
-            }
-                
+            }       
         }
-
     }
 
     deleteProductById = async(aId) => {
