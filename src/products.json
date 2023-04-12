@@ -1,12 +1,12 @@
 [
 	{
-		"title": "Celular",
-		"description": "Samsung Galaxy S23+",
-		"price": 150000,
+		"title": "Auriculares",
+		"description": "Skullcandy",
+		"price": 6500,
 		"thumbnail": [],
-		"code": "abc123",
-		"stock": 220,
-		"category": "Android Smartphones",
+		"code": "SK10120",
+		"stock": 14,
+		"category": "Musica",
 		"status": true,
 		"id": 1
 	},

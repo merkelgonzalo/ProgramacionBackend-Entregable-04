@@ -30,4 +30,20 @@ router.post('/', async (req,res) => {
     })
 });
 
+router.put('/:pid', async (req,res) => {
+    const product = req.body;
+    const idProduct = req.params.pid;
+    const productUpdated = await productManager.updateProduct(idProduct, product);
+
+    if(productUpdated != 'ID not found'){
+        res.send({
+            status: 'Success'
+        })
+    }else{
+        res.send({
+            status: 'Error: ID not found'
+        })
+    }
+});
+
 export default router;

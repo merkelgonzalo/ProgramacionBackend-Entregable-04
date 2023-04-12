@@ -62,7 +62,7 @@ export default class ProductManager{
         if(products.length === 0){
             return 'Empty file: Can not update a product'
         }else{
-            let productById = await productManager.getProductById(aId);
+            let productById = await this.getProductById(aId);
             if(productById == 'ID not found'){
                 return 'ID not found';
             }else{
