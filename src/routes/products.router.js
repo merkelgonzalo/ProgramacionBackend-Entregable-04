@@ -38,11 +38,26 @@ router.put('/:pid', async (req,res) => {
     if(productUpdated != -1){
         res.send({
             status: 'Success'
-        })
+        });
     }else{
         res.send({
             status: 'Error: ID not found'
-        })
+        });
+    }
+});
+
+router.delete('/:pid', async (req,res) => {
+    const idProduct = req.params.pid;
+    const productDeleted = await productManager.deleteProductById(idProduct);
+
+    if(productDeleted != -1){
+        res.send({
+            status: 'Success'
+        });
+    }else{
+        res.send({
+            status: 'Error: ID not found'
+        });
     }
 });
 

@@ -22,17 +22,6 @@
 		"id": 2
 	},
 	{
-		"title": "Celular",
-		"description": "iPhone 14",
-		"price": 400000,
-		"thumbnail": [],
-		"code": "abd123",
-		"stock": 0,
-		"category": "Apple Smartphones",
-		"status": false,
-		"id": 3
-	},
-	{
 		"title": "Auriculares",
 		"description": "Skullcandy",
 		"price": 6500,

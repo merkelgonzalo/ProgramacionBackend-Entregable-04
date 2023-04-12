@@ -74,21 +74,22 @@ export default class ProductManager{
         }
     }
 
-    deleteProductById = async(aId) => {
+    deleteProductById = async (aId) => {
+        
         if(fs.existsSync(`./${this.path}`)){
-            const data = await fs.promises.readFile(`./${this.path}`, 'utf-8');
-            const products = JSON.parse(data);
+            const products = await this.getProducts();
             let productMatched = products.find(product => product.id == aId);
 
             if(productMatched == undefined){
-                return 'ID not found'
+                return -1;
             }else{
-                let newArrayProducts = products.filter(product => product.id !== aId);
+                const newArrayProducts = products.filter(product => product.id != aId);
+
                 await fs.promises.writeFile(`./${this.path}`, JSON.stringify(newArrayProducts, null, '\t'));
                 return newArrayProducts;
             }
         }else{
-            return 'The file is empty';
+            return -1;
         }
     }
 
