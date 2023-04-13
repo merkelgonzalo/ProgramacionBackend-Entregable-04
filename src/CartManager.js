@@ -1,4 +1,7 @@
 import fs from 'fs';
+import ProductManager from './ProductManager.js';
+
+const productManager = new ProductManager("/src/products.json");
 
 export default class CartManager{
 
@@ -34,9 +37,9 @@ export default class CartManager{
 
     addCart = async () => {
         const carts = await this.getCarts();
-        const cart = {
-            products: []
-        };
+        const cart = {};
+
+        cart.products = [];
 
         if(carts.length === 0){
             cart.id = 1;
@@ -49,6 +52,36 @@ export default class CartManager{
         await fs.promises.writeFile(`./${this.path}`, JSON.stringify(carts, null, '\t'));
     
         return cart;
+    }
+
+    addProduct = async(idCart, idProduct, quant) => {
+
+        const carts = await this.getCarts();
+        const cart = await this.getCartById(idCart);
+        const product = await productManager.getProductById(idProduct);
+        
+        if(cart == -1 || product == -1){
+            return -1;
+        }else{
+            let productMatchedPos = cart.products.findIndex(product => product.id == idProduct);
+        
+            if(productMatchedPos == -1){
+                let product = {};
+                product.quantity = quant;
+                product.id = idProduct;
+
+                cart.products.push(product);
+            }else{
+                console.log(cart.products[productMatchedPos].quantity);
+                cart.products[productMatchedPos].quantity = cart.products[productMatchedPos].quantity+quant;
+            }
+                
+            carts[idCart-1] = cart;
+            await fs.promises.writeFile(`./${this.path}`, JSON.stringify(carts, null, '\t'));
+
+            return cart; 
+        }
+
     }
 
 }
